@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Isbn;
+use App\Models\Loan;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class LoanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        $booksList = Book::all();
-        return view('books.list', ['booksList' => $booksList]);
+        $loansList = Loan::all();
+
+        return view('loans.list', ['loansList' => $loansList]);
     }
 
     /**
@@ -24,21 +25,17 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $book = new Book();
-        $book->name = "Pan Tadeusz";
-        $book->year = 1999;
-        $book->publication_place = "Kraków";
-        $book->pages = 450;
-        $book->price = 39.99;
-        $book->save();
-        $isbn = new Isbn([
-            'number' => '123456789',
-            'issued_by' => 'Wydawca',
-            'issued_on' => '2015-01-20'
-        ]);
-        $book->isbn()->save($isbn);
+        $hobbit = Book::where('name', 'Kolor magii')->first();
+
+        $loan = new Loan();
+        $loan->client = "Mateusz Kowalski";
+        $loan->loaned_on = "2020-04-10";
+        $loan->estimated_on = "2020-04-24";
+        // $loan->book_id = $hobbit->id;
+        $hobbit->loans()->save($loan);
+        $loan->save();
 
         return redirect('books');
     }
@@ -51,15 +48,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $book = new Book();
-        $book->name = "Pan Tadeusz";
-        $book->year = 1999;
-        $book->publication_place = "Kraków";
-        $book->pages = 450;
-        $book->price = 39.99;
-        $book->save();
-
-        return redirect('books');
+        //
     }
 
     /**
@@ -70,9 +59,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::find($id);
-        // $book = Book::where('name', 'Hobbit')->first();
-        return view('books.show', ['book' => $book]);
+        //
     }
 
     /**
@@ -83,11 +70,7 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $book = Book::find($id);
-        $book->name = 'Serce Europay';
-        $book->save();
-
-        return redirect('books');
+        //
     }
 
     /**
@@ -110,8 +93,6 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        Book::destroy($id);
-
-        return redirect('books');
+        //
     }
 }

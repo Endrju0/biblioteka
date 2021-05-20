@@ -19,7 +19,13 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a href="{{URL::to('books')}}" class="nav-link">Książki </a>
+                <a href="{{URL::to('books')}}" class="nav-link">Książki</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{URL::to('loans')}}" class="nav-link">Wypożyczenia</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{URL::to('authors')}}" class="nav-link">Autorzy</a>
               </li>
             </ul>
           </div>

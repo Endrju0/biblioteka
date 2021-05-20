@@ -18,5 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('books', 'App\Http\Controllers\BookController');
-// Route::get('lol', 'App\Http\Controllers\BookController@index');
-// Route::get('/lol', [BookController::class, 'index']);
+Route::resource('loans', 'App\Http\Controllers\LoanController');
+Route::resource('authors', 'App\Http\Controllers\AuthorController');
+// Route::get('test', 'App\Http\Controllers\BookController@index');
+// Route::get('/test', [BookController::class, 'index']);

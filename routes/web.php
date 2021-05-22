@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('books/cheapest', 'App\Http\Controllers\BookController@cheapest');
+Route::get('books/longest', 'App\Http\Controllers\BookController@longest');
+Route::get('books/search', 'App\Http\Controllers\BookController@search');
 Route::resource('books', 'App\Http\Controllers\BookController');
 Route::resource('loans', 'App\Http\Controllers\LoanController');
 Route::resource('authors', 'App\Http\Controllers\AuthorController');

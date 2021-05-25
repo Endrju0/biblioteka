@@ -11,6 +11,18 @@ class BookRepository extends BaseRepository {
         $this->model = $model;
     }
 
+    public function create(array $data)
+    {
+        $book = Book::create($data);
+
+        if(isset($data['author_id'])) {
+            // Sync przyjmuje tablicę id, które mają zostać dopisane do wybranego obiektu
+            $book->authors()->sync($data['author_id']);
+        }
+
+        return $book;
+    }
+
     public function cheapest()
     {
         $booksList = $this->model->orderBy('price', 'asc')->limit(3)->get();

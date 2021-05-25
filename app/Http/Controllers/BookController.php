@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Isbn;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BookRepository;
@@ -30,29 +31,9 @@ class BookController extends Controller
      */
     public function create(BookRepository $bookRepo)
     {
-        $data = [
-            'name' => 'Czarny Dom',
-            'year' => 2010,
-            'publication_place' => 'Warszawa',
-            'pages' => 648,
-            'price' => 59.99
-        ];
-        $booksList = $bookRepo->create($data);
-        // $book = new Book();
-        // $book->name = "Pan Tadeusz";
-        // $book->year = 1999;
-        // $book->publication_place = "Kraków";
-        // $book->pages = 450;
-        // $book->price = 39.99;
-        // $book->save();
-        $isbn = new Isbn([
-            'number' => '987654321',
-            'issued_by' => 'Wydawca',
-            'issued_on' => '2018-01-20'
-        ]);
-        $book->isbn()->save($isbn);
+        $authors = Author::all();
 
-        return redirect('books');
+        return view('books.create', ['authors' => $authors]);
     }
 
     /**
@@ -61,17 +42,19 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, BookRepository $bookRepo)
     {
-        // $book = new Book();
-        // $book->name = "Pan Tadeusz";
-        // $book->year = 1999;
-        // $book->publication_place = "Kraków";
-        // $book->pages = 450;
-        // $book->price = 39.99;
-        // $book->save();
+        $data = $request->all();
+        $booksList = $bookRepo->create($data);
 
-        // return redirect('books');
+        // $isbn = new Isbn([
+        //     'number' => '987654321',
+        //     'issued_by' => 'Wydawca',
+        //     'issued_on' => '2018-01-20'
+        // ]);
+        // $book->isbn()->save($isbn);
+
+        return redirect('books');
     }
 
     /**

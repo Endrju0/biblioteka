@@ -22,21 +22,35 @@
               
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooks" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Książki
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownBooks">
+                <li><a href="{{URL::to('books/create')}}" class="dropdown-item">Dodaj nową</a></li>
                 <li><a href="{{URL::to('books')}}" class="dropdown-item">Wszystkie książki</a></li>
                 <li><a href="{{URL::to('books/cheapest')}}" class="dropdown-item">Top 3 najtańsze</a></li>
                 <li><a href="{{URL::to('books/longest')}}" class="dropdown-item">Top 3 najdłuższe</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="{{URL::to('loans')}}" class="nav-link">Wypożyczenia</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLoans" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Wypożyczenia
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownLoans">
+                <li><a href="{{URL::to('loans.create')}}" class="dropdown-item">Dodaj nowe wypożyczenie</a></li>
+                <li><a href="{{URL::to('loans')}}" class="dropdown-item">Wszystkie wypożyczenia</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a href="{{URL::to('authors')}}" class="nav-link">Autorzy</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAuthors" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Autorzy
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownAuthors">
+                <li><a href="{{URL::to('authors/create')}}" class="dropdown-item">Dodaj nowego</a></li>
+                <li><a href="{{URL::to('authors')}}" class="dropdown-item">Wszyscy autorzy</a></li>
+              </ul>
             </li>
+
           </ul>
         </div>
       </div>

@@ -27,35 +27,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        $author = new Author();
-        $author->lastname = 'Straub';
-        $author->firstname = 'Peter';
-        $author->birthday = '1943-03-02';
-        $author->genres = 'horror, thriller';
-        $author->save();
-
-        $authorSecond = new Author();
-        $authorSecond->lastname = 'King';
-        $authorSecond->firstname = 'Stephen';
-        $authorSecond->birthday = '1947-09-21';
-        $authorSecond->genres = 'horror, thriller';
-        $authorSecond->save();
-
-
-        $czarnyDom = Book::where('name', 'Czarny Dom')->first();
-        $czarnyDom->authors()->attach($author);
-        $czarnyDom->authors()->attach($authorSecond);
-        // $czarnyDom->authors()->sync([1,2,3]);
-
-        // $book = new Book();
-        // $book->name = 'Czarny Dom';
-        // $book->year = 2010;
-        // $book->publication_place = 'Warszawa';
-        // $book->pages = 648;
-        // $book->price = 59.99;
-        // $book->save();
-
-        return redirect('books');
+        return view('authors.create');
     }
 
     /**
@@ -66,7 +38,11 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $author = new Author();
+        $author->fill($request->all());
+        $author->save();
+
+        return redirect('authors');
     }
 
     /**

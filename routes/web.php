@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::redirect('/', 'books', 301);
 Route::get('books/cheapest', 'App\Http\Controllers\BookController@cheapest');
 Route::get('books/longest', 'App\Http\Controllers\BookController@longest');
 Route::get('books/search', 'App\Http\Controllers\BookController@search');

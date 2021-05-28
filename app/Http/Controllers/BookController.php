@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Isbn;
 use App\Models\Author;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBook;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BookRepository;
 
@@ -42,8 +43,16 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, BookRepository $bookRepo)
+    public function store(StoreBook $request, BookRepository $bookRepo)
     {
+        // $validatedData = $request->validate([
+        //     'name' => 'required|max:255',
+        //     'year' => 'required|integer',
+        //     'publication_place' => 'required|string',
+        //     'pages' => 'required|integer',
+        //     'price' => 'required|numeric'
+        // ]);
+
         $data = $request->all();
         $booksList = $bookRepo->create($data);
 

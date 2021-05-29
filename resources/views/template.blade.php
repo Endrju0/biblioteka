@@ -18,8 +18,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLang" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Języki
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownLang">
+                <li><a href="{{URL::to('language/pl')}}" class="dropdown-item">Polski</a></li>
+                <li><a href="{{URL::to('language/en')}}" class="dropdown-item">Angielski</a></li>
+              </ul>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBooks" role="button" data-bs-toggle="dropdown" aria-expanded="false">

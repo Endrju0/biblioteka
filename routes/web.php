@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::redirect('/', 'books', 301);
 Route::get('books/cheapest', 'App\Http\Controllers\BookController@cheapest');
 Route::get('books/longest', 'App\Http\Controllers\BookController@longest');
@@ -24,5 +21,9 @@ Route::get('books/search', 'App\Http\Controllers\BookController@search');
 Route::resource('books', 'App\Http\Controllers\BookController');
 Route::resource('loans', 'App\Http\Controllers\LoanController');
 Route::resource('authors', 'App\Http\Controllers\AuthorController');
-// Route::get('test', 'App\Http\Controllers\BookController@index');
+Route::get('language/{locale}', function ($locale) {
+    session(['locale' => $locale]);
+    // return redirect()->action('App\Http\Controllers\BookController@index');
+    return redirect()->route('books.index');
+});
 // Route::get('/test', [BookController::class, 'index']);

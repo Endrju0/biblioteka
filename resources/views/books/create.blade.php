@@ -13,7 +13,7 @@
                 <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group">
-                <label for="year">{{ __('forms.year') }}</label>
+                <label for="year">{{ __('forms.publication_year') }}</label>
                 <input type="text" class="form-control" name="year">
             </div>
             <div class="form-group">

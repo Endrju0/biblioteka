@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Isbn;
 use App\Models\Author;
+use App\Events\BookCreated;
 use Illuminate\Http\Request;
+use App\Services\OpenLibrary;
 use App\Http\Requests\StoreBook;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BookRepository;
@@ -46,23 +48,9 @@ class BookController extends Controller
      */
     public function store(StoreBook $request, BookRepository $bookRepo)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'year' => 'required|integer',
-        //     'publication_place' => 'required|string',
-        //     'pages' => 'required|integer',
-        //     'price' => 'required|numeric'
-        // ]);
-
         $data = $request->all();
-        $booksList = $bookRepo->create($data);
-
-        // $isbn = new Isbn([
-        //     'number' => '987654321',
-        //     'issued_by' => 'Wydawca',
-        //     'issued_on' => '2018-01-20'
-        // ]);
-        // $book->isbn()->save($isbn);
+        $book = $bookRepo->create($data);
+        event(new BookCreated($book));
 
         return redirect('books');
     }
@@ -73,12 +61,18 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(BookRepository $bookRepo, $id)
+    public function show(OpenLibrary $ol, BookRepository $bookRepo, $id)
     {
         // $book = Book::find($id);
         $book = $bookRepo->find($id);
+        $openLibData = $ol->search($book->name);
+        $data = json_decode($openLibData);
+        $docs = array_slice($data->docs, 0, 5);
 
-        return view('books.show', ['book' => $book]);
+        return view('books.show', [
+            'book' => $book,
+            'docs' => $docs
+        ]);
     }
 
     /**

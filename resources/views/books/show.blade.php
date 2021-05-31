@@ -53,6 +53,39 @@
                 </tr>
             @endisset
             </table>
+
+            <h2>Znalezione pozycje z Open Library</h2>
+            @isset($docs)
+                <table class="table">
+                    @foreach ($docs as $doc)
+                        <tr>
+                            <td>Tytuł</td>
+                            <td>{{ $doc->title }}</td>
+                        </tr>
+                        @isset($doc->author_name)
+                            <tr>
+                                <td>Autor</td>
+                                <td>{{ $doc->author_name[0] }}</td>
+                            </tr>
+                        @endisset
+                        @isset($doc->first_publish_year)
+                            <tr>
+                                <td>Data pierwszego wydania</td>
+                                <td>{{ $doc->first_publish_year }}</td>
+                            </tr>
+                        @endisset
+                        @isset($doc->publisher)
+                            <tr>
+                                <td>Wydawca</td>
+                                <td>{{ $doc->publisher[0] }}</td>
+                            </tr>
+                        @endisset
+                        @if(!$loop->last)
+                            <tr class="table-secondary"><td colspan="2"></td></tr>
+                        @endif
+                    @endforeach
+                </table>
+            @endisset
         @else
             Brak książki.
         @endisset

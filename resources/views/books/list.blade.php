@@ -13,13 +13,12 @@
                 <td><a href="{{ url('/books', [$book->id]) }}">Podgląd</a></td>
                 <td><a href="{{ route('books.edit', [$book->id]) }}">Edycja</a></td>
                 <td>
-                    <form id="delform" action="{{ route('books.destroy', [$book->id]) }}" method="POST">
+                    <form id="delform-{{$book->id}}" action="{{ route('books.destroy', [$book->id]) }}" method="POST">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
-                        <a href="#" onclick="document.getElementById('delform').submit();">Usuń</a>
+                        <a href="#" onclick="document.getElementById('delform-{{$book->id}}').submit();">Usuń</a>
                     </form>
                 </td>
-                {{-- <td><a href="{{ url("/books/$book->id/edit") }}">Edycja</a></td> --}}
             </tr>
             @empty
                 Brak rekordów

@@ -3,6 +3,7 @@
     Lista wypożyczeń
 @endsection
 @section('content')
+    @if ($loansList->isNotEmpty())
     <div class="container">
         <table class="table">
             <tr>
@@ -12,7 +13,7 @@
                 <th>Data zwrotu</th>
                 <th>Dane klienta</th>
             </tr>
-            @forelse ($loansList as $loan)
+            @foreach ($loansList as $loan)
             <tr>
                 <td>{{$loan->book->name}}</td>
                 <td>{{$loan->loaned_on}}</td>
@@ -20,9 +21,10 @@
                 <td>{{$loan->returned_on}}</td>
                 <td>{{$loan->client}}</td>
             </tr>
-            @empty
-                Brak rekordów
-            @endforelse
+            @endforeach
         </div>
     </table>
+    @else
+        Brak rekordów
+    @endif
 @endsection

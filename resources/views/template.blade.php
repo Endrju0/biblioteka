@@ -43,7 +43,7 @@
                 Wypożyczenia
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownLoans">
-                <li><a href="{{URL::to('loans.create')}}" class="dropdown-item">Dodaj nowe wypożyczenie</a></li>
+                <li><a href="{{URL::to('loans/create')}}" class="dropdown-item">Dodaj nowe wypożyczenie</a></li>
                 <li><a href="{{URL::to('loans')}}" class="dropdown-item">Wszystkie wypożyczenia</a></li>
               </ul>
             </li>

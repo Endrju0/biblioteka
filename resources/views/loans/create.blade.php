@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Dodawanie autora</h2>
+        <h2>Dodawanie wypożyczenia</h2>
         <form action="{{ action('App\Http\Controllers\LoanController@store') }}" method="POST">
             {{ csrf_field() }}
             <div class="form-group">

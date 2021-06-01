@@ -18,9 +18,13 @@
                 <td>{{$author->firstname}}</td>
                 <td>{{$author->birthday}}</td>
                 <td>{{$author->genres}}</td>
-                @foreach ($author->books as $book)
-                    <td><a href="{{ route('books.show', [$book->id]) }}">{{$book->name}}</a></td>
-                @endforeach
+                <td>
+                    <ul>
+                    @foreach ($author->books as $book)
+                        <li><a href="{{ route('books.show', [$book->id]) }}">{{$book->name}}</a></li>
+                    @endforeach
+                    </ul>
+                </td>
             </tr>
             @empty
                 Brak rekordów

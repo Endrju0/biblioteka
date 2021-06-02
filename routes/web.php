@@ -23,7 +23,5 @@ Route::resource('loans', 'App\Http\Controllers\LoanController');
 Route::resource('authors', 'App\Http\Controllers\AuthorController');
 Route::get('language/{locale}', function ($locale) {
     session(['locale' => $locale]);
-    // return redirect()->action('App\Http\Controllers\BookController@index');
     return redirect()->route('books.index');
 });
-// Route::get('/test', [BookController::class, 'index']);

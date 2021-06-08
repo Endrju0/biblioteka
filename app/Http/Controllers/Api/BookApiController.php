@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Events\BookCreated;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreBook;
+use App\Http\Controllers\Controller;
+use App\Repositories\BookRepository;
+use App\Http\Resources\Book as BookResource;
+
+class BookApiController extends Controller
+{
+    public function find(BookRepository $bookRepo, $id)
+    {
+        $book = $bookRepo->find($id);
+        
+        return new BookResource($book);
+    }
+
+    public function store(StoreBook $request, BookRepository $bookRepo)
+    {
+        $data = $request->all();
+        $book = $bookRepo->create($data);
+        event(new BookCreated($book));
+
+        return new BookResource($book);
+    }
+
+    public function list(BookRepository $bookRepo)
+    {
+        $booksList = $bookRepo->getAll();
+
+        return new BookResource($booksList);
+    }
+
+    public function update(Request $request, BookRepository $bookRepo, $id)
+    {
+        $data = $request->all();
+        $book = $bookRepo->update($data, $id);
+
+        return new BookResource($book);
+    }
+
+    public function destroy(BookRepository $bookRepo, $id)
+    {
+        $booksList = $bookRepo->delete($id);
+
+        return array('message' => 'success');
+    }
+}

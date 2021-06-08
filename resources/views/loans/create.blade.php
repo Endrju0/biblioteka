@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts/app')
 @section('title')
     Lista wypożyczeń
 @endsection

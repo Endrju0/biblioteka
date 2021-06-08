@@ -8,9 +8,9 @@ use App\Models\Author;
 use App\Events\BookCreated;
 use Illuminate\Http\Request;
 use App\Services\OpenLibrary;
-use App\Http\Requests\StoreBook;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BookRepository;
+use App\Http\Requests\StoreBook;
 
 class BookController extends Controller
 {
